@@ -4,7 +4,13 @@
 <head>
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <title>Snippet - BBBootstrap</title>
+  <title>DeepFake Detection</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- Bootstrap JS and Popper.js (required for some Bootstrap components) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <link href='#' rel='stylesheet'>
   <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
   <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
@@ -42,12 +48,50 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      background: #FC6E74;
+      background: #0b0b0b;
     }
     h1 {
       margin-top: 20px;
       margin-bottom: 20px; /* Added margin between heading and div */
       color: white;
+    }
+    h2 {
+      margin-top: 20px;
+      margin-bottom: 20px; /* Added margin between heading and div */
+      color: orange;
+    }
+    h3 {
+      margin-top: 20px;
+      margin-bottom: 20px; /* Added margin between heading and div */
+      color: yellowgreen;
+    }
+     nav {
+      background-color: #666; /* Grey background color */
+      padding: 10px 20px; /* Adjust padding for a cleaner look */
+      width: 100%;
+    }
+
+    nav a {
+      color: white !important;
+    }
+
+    nav a:hover {
+      color: rgb(216, 210, 29) !important;
+    }
+     .navbar-left {
+            float: left;
+        }
+
+        .navbar-right {
+            float: right;
+        }
+
+        .github-icon {
+            font-size: 24px;
+            margin-right: 5px;
+        }
+    .navbar-brand {
+      margin-right: auto; /* Move the brand to the left */
     }
 
     .drag-image {
@@ -132,7 +176,23 @@
 </head>
 
 <body class='snippet-body'>
-  <h1>DeepFake Detection </h1>
+  <nav>
+        <div class="navbar-left">
+            <a href="#" class="navbar-link" onclick="location.reload()">Home</a>
+        </div>
+
+        <div class="navbar-right">
+            <!-- GitHub Icon with Font Awesome -->
+            <a href="https://github.com" target="_blank" class="navbar-link">
+                <i class="fab fa-github github-icon"></i> GitHub
+            </a>
+        </div>
+
+        <!-- Clear the float -->
+        <div style="clear: both;"></div>
+    </nav>
+  <h1>DeepFake Detector </h1>
+
   <div class="drag-image">
     <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
     <h6>Drag & Drop File Here</h6>
@@ -141,8 +201,13 @@
     <input type="file" hidden>
   </div>
   <!-- Submit button outside the dotted square -->
-  <button class="submit-button" id="submitBtn" onclick="submitForm()">Submit</button>
-  <div id="displayArea"></div>
+  <button class="submit-button" id="submitBtn" onclick="submitForm()">Is it Real or Fake?</button>
+  <h2 id="displayArea"></h2>
+  <h3 id="displayArea2"></h3>
+  <footer>
+    <hr>
+    <p style="text-align: center;">Made with <span style="color: red;">❤</span></p>
+  </footer>
   <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
   <script type='text/javascript' src='https://use.fontawesome.com/releases/v5.7.2/css/all.css'></script>
   <!-- <script type='text/javascript' src='https://your-cdn-link.com'></script> -->
@@ -219,7 +284,11 @@
   })
 .then(data => {
   console.log('Server Response:', data);
-  document.getElementById('displayArea').innerText = data;
+  if(data.charAt(0)=='F') 
+  {document.getElementById('displayArea').innerText = data;}
+  else
+  {document.getElementById('displayArea2').innerText = data;}
+
 })
   .catch(error => {
     console.error('Error:', error);
